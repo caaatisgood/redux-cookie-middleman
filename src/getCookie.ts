@@ -3,11 +3,11 @@ import has from 'has'
 
 type GetCookie = {
   key?: string,
-  asJson: boolean,
+  asJson?: boolean,
 }
 
-const getCookie = (param: GetCookie) => {
-  const { key, asJson } = param
+const getCookie = (param: GetCookie = {}) => {
+  const { key, asJson = false } = param
   const rawValue = has(param, 'key')
     ? Cookies.get(key)
     : Cookies.get()

@@ -31,7 +31,7 @@ describe('#setCookie', () => {
     it('should call `set` of js-cookie with key, value and option', () => {
       const option = {
         expires: 365,
-        domain: 'codementor.io',
+        domain: '.codementor.io',
         secure: true,
         path: '/path',
       }

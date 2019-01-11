@@ -1,7 +1,7 @@
 import Cookies from 'js-cookie'
+import omit from 'lodash.omit'
 import setCookie from './setCookie'
 import getCookie from './getCookie'
-import transformToAction from './transformToAction'
 import {
   ReduxStore,
   ReduxAction
@@ -53,18 +53,21 @@ export default ({ dispatch, getState }: ReduxStore) => (next: Function) => (acti
       Cookies.remove(key)
   }
 
-  const cookieData = getCookie({ key, asJson })
+  let cookieData = undefined
+  if (method !== 'remove') {
+    cookieData = getCookie({ key, asJson })
+  }
 
   if (typeof callback === 'function') {
     callback({ dispatch, getState, cookieData })
   }
 
   if (actionType) {
-    const transformedAction = transformToAction({
-      action,
+    const transformedAction = omit({
+      ...action,
       type: actionType,
       cookieData,
-    })
+    }, COOKIE_STORAGE)
     dispatch(transformedAction)
   }
 }

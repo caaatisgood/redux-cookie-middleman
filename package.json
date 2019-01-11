@@ -36,7 +36,7 @@
   "dependencies": {
     "has": "1.0.3",
     "js-cookie": "2.2.0",
-    "lodash": "4.17.11",
+    "lodash.omit": "4.5.0",
     "lodash.omitby": "4.6.0"
   }
 }

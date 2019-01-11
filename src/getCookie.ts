@@ -2,15 +2,13 @@ import Cookies from 'js-cookie'
 import has from 'has'
 
 type GetCookie = {
-  key?: string,
-  asJson?: boolean,
+  key?: string
+  asJson?: boolean
 }
 
 const getCookie = (param: GetCookie = {}) => {
   const { key, asJson = false } = param
-  const rawValue = has(param, 'key')
-    ? Cookies.get(key)
-    : Cookies.get()
+  const rawValue = has(param, 'key') ? Cookies.get(key) : Cookies.get()
   let value = rawValue
   if (asJson) {
     try {

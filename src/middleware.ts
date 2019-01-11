@@ -1,33 +1,13 @@
 import Cookies from 'js-cookie'
 import setCookie from './setCookie'
 import getCookie from './getCookie'
+import transformToAction from './transformToAction'
+import {
+  ReduxStore,
+  ReduxAction
+} from './types'
 
 export const COOKIE_STORAGE = Symbol('COOKIE_STORAGE')
-
-type ReduxStore = {
-  dispatch: Function,
-  getState: Function,
-}
-
-type Methods = 'get' | 'set' | 'push' | 'remove'
-type ReduxActionType = Symbol | string
-
-type Operation = {
-  method: Methods,
-  key?: string,
-  value?: any,
-  actionType?: ReduxActionType,
-  domain?: string,
-  expires?: number,
-  secure?: boolean,
-  path?: string,
-  asJson?: boolean,
-  callback?: Function,
-}
-
-type ReduxAction = {
-  [COOKIE_STORAGE]?: Operation,
-}
 
 export default ({ dispatch, getState }: ReduxStore) => (next: Function) => (action: ReduxAction) => {
   const operation = action[COOKIE_STORAGE]
@@ -86,22 +66,6 @@ export default ({ dispatch, getState }: ReduxStore) => (next: Function) => (acti
       cookieData,
     })
     dispatch(transformedAction)
-  }
-}
-
-type TransformToAction = {
-  action: ReduxAction,
-  type: ReduxActionType,
-  cookieData: any,
-}
-
-const transformToAction = ({ action, type, ...payload }: TransformToAction) => {
-  const clonedAction = { ...action }
-  delete clonedAction[COOKIE_STORAGE]
-  return {
-    ...clonedAction,
-    type,
-    ...payload,
   }
 }
 

@@ -4,5 +4,9 @@ module.exports = {
   transform: {
     '.(ts|tsx)': 'ts-jest'
   },
-  testMatch: ['**/__tests__/**/*.test.ts']
+  testMatch: ['**/__tests__/**/*.test.ts'],
+  moduleFileExtensions: [
+    'ts',
+    'js'
+  ]
 }

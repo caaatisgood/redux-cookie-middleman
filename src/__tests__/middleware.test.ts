@@ -1,7 +1,8 @@
 import { mocked } from 'ts-jest'
 import Cookies from 'js-cookie'
 import omit from 'lodash.omit'
-import middleware, { COOKIE_STORAGE } from '../middleware'
+import middleware from '../middleware'
+import { COOKIE_STORAGE } from '../'
 import {
   ReduxAction,
   Operation

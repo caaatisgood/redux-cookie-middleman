@@ -4,11 +4,13 @@
   ],
   "exclude": [
     "node_modules",
+    "scripts",
     "**/*.test.ts"
   ],
   "compilerOptions": {
-    "target": "esnext",
+    "target": "es5",
     "module": "commonjs",
+    "lib": ["es6"],
     "declaration": true,
     "outDir": "lib",
     "strict": true,

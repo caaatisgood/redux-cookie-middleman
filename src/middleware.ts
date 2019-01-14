@@ -1,10 +1,9 @@
 import Cookies from 'js-cookie'
 import omit from 'lodash.omit'
+import { COOKIE_STORAGE } from './'
 import setCookie from './setCookie'
 import getCookie from './getCookie'
 import { ReduxStore, ReduxAction } from './types'
-
-export const COOKIE_STORAGE = Symbol('COOKIE_STORAGE')
 
 export default ({ dispatch, getState }: ReduxStore) => (next: Function) => (
   action: ReduxAction,
